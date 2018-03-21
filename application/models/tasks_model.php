@@ -10,7 +10,7 @@
         }
 
         $query = $this->db->get_where('taken', array('slug'=> $slug));
-        return $query->row_array();
+        return $query;
         
     }
 
@@ -24,5 +24,18 @@
             'lijst_id'=> $id,
         );
         return $this->db->insert('taken', $data);
+    }
+    public function get_tasks_by_id($id){
+        //get all tasks from db
+        $allTasks = $this->tasks_model->get_tasks();
+        //array for all taks with same id
+        $tasksById= [];
+        //check if id of tasks = id of list
+        foreach ($allTasks as $task) {
+           if($task['lijst_id'] == $id){
+                array_push($tasksById, $task);
+           }
+        }
+        return $tasksById;   
     }
  }

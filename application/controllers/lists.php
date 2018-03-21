@@ -36,6 +36,7 @@
             //get data for index page
             $data['listID'] = $id;
             $data['list'] = $this->lists_model->get_list($id);
+            $data['tasks'] = $this->tasks_model->get_tasks_by_id($id);
             //load index page
             $this->load->view('templates/header');
             $this->load->view('lists/view' , $data);
