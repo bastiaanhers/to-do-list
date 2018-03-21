@@ -8,6 +8,5 @@
 </head>
 <body>
 <div class="w3-bar w3-black">
-  <a href="/toDoList/pages/ToDoList" class="w3-bar-item w3-button">Home</a>
+  <a href="/toDoList/lists/index" class="w3-bar-item w3-button">lists</a>
   <a href="/toDoList/tasks/index" class="w3-bar-item w3-button">tasks</a>
-</div>
