@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['tasks'] = 'tasks/index';
 $route['lists'] = 'lists/index';
+$route['lists/view'] = 'lists/view';
+$route['lists/edit'] = 'lists/edit';
 $route['lists/create'] = 'lists/create';
 $route['default_controller'] = 'pages/view';
 $route['(:any)'] = 'pages/view/$1';

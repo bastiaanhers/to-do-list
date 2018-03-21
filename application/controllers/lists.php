@@ -32,5 +32,35 @@
                 redirect('lists');
             }
         }
+        public function view($id){
+            //get data for index page
+            $data['listID'] = $id;
+            $data['list'] = $this->lists_model->get_list($id);
+            //load index page
+            $this->load->view('templates/header');
+            $this->load->view('lists/view' , $data);
+            $this->load->view('templates/footer');   
+        }
+
+        public function delete($listID){
+            $this->lists_model->delete_list($listID);
+            redirect('lists');
+        }
+
+        public function edit($listID){
+            $data['title'] = 'edit list';
+            $data['listID'] = $listID;
+            $data['list'] = $this->lists_model->get_list($listID);
+
+            $this->load->view('templates/header');
+            $this->load->view('lists/edit', $data);
+            $this->load->view('templates/footer');
+        }
+
+        public function update($listID){
+                $this->lists_model->update_list($listID);
+                redirect('lists/view/'.$listID);
+        }
+        
     }
 ?>
