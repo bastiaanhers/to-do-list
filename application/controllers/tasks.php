@@ -28,4 +28,25 @@
                 redirect('lists/view/'.$id);
             }
         }
+        public function delete($taskID){
+            $this->tasks_model->delete_task($taskID);
+            redirect('lists');
+        }
+        public function edit($taskID){
+            $data['title'] = 'edit task';
+            $data['taskID'] = $taskID;
+            $data['task'] = $this->tasks_model->get_task_by_id($taskID);
+
+            $this->load->view('templates/header');
+            $this->load->view('tasks/edit', $data);
+            $this->load->view('templates/footer');
+        }
+        public function update($taskID){
+            $this->tasks_model->update_task($taskID);
+            redirect('lists/');
+        }
+        public function changeStatus($taskID){
+            $this->tasks_model->change_task_status($taskID);
+            redirect('lists/');
+        }
     }

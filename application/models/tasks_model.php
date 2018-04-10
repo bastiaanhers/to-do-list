@@ -38,4 +38,43 @@
         }
         return $tasksById;   
     }
- }
+    public function get_task_by_id($id){
+        //get all tasks from db
+        $allTasks = $this->tasks_model->get_tasks();
+
+        foreach ($allTasks as $task) {
+            if($task['id'] == $id){
+              $taskById = $task  ;
+            }
+         }
+        return $taskById;   
+    }
+    public function delete_task($taskID){
+        $this->db->where('id',$taskID);
+        $this->db->delete('taken');
+        return true;
+    } 
+
+    //edit list
+    public function update_task($taskID){
+        $data = array(
+            'id' => $taskID,
+            'naam' => $this->input->post('Naam'),
+            'uitleg' => $this->input->post('Uitleg'),
+            'duur' => $this->input->post('Duur'),
+            'status' => $this->input->post('Status'),
+        );
+        $this->db->replace('taken', $data);
+    } 
+        //edit status
+    public function change_task_status($taskID){
+        $data = array(
+            'status' => 1,
+        );
+            $this->db->where('id',$taskID);
+            $this->db->replace('taken', $data);
+        $this->db->set('status', 1);
+        $this->db->where('id', $taskID);
+        $this->db->update('taken');
+    }   
+}
